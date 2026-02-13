@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aansh ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #ffffff, #ffe6ec);
+    overflow-x: hidden;
+}
+
+/* PASSWORD SCREEN */
+#passwordScreen {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    padding: 20px;
+    text-align: center;
+}
+
+#passwordScreen h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+#passwordScreen input {
+    padding: 14px;
+    font-size: 18px;
+    border: 2px solid #ff1e56;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 300px;
+}
+
+#passwordScreen button {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: #ff1e56;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+/* MAIN CONTENT */
+#mainContent {
+    display: none;
+    min-height: 100vh;
+    padding: 30px 20px 80px 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Heading */
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 42px;
+    color: #ff1e56;
+    margin-top: 20px;
+}
+
+/* Heart Image */
+.heart-frame {
+    width: 260px;
+    height: 240px;
+    margin: 25px auto;
+}
+
+.heart-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: path("M 130 240 C -30 120 60 -20 130 60 C 200 -20 290 120 130 240 Z");
+    box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+}
+
+/* Question */
+.question {
+    font-size: 32px;
+    font-weight: 800;
+    margin-top: 30px;
+    color: #111;
+    padding: 0 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 16px 45px;
+    font-size: 20px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin: 20px 10px;
+    transition: 0.3s ease;
+}
+
+.yes-btn {
+    background: #ff1e56;
+    color: white;
+}
+
+.no-btn {
+    background: white;
+    color: #ff1e56;
+    border: 2px solid #ff1e56;
+    position: absolute;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    padding: 20px;
+}
+
+.popup-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    font-size: 22px;
+    color: #ff1e56;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* BALLOONS */
+.balloon {
+    position: absolute;
+    width: 70px;
+    animation: floatUp linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(120vh); }
+    to { transform: translateY(-150vh); }
+}
+
+/* DESKTOP SCALING */
+@media(min-width:768px){
+    h1 { font-size: 60px; }
+    .question { font-size: 45px; }
+    .heart-frame { width: 340px; height: 320px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="passwordScreen">
+    <h2>Enter Password 💌</h2>
+    <input type="password" id="pwd" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock ❤️</button>
+</div>
+
+<!-- MAIN -->
+<div id="mainContent">
+
+    <h1>Aansh ❤️</h1>
+
+    <div class="heart-frame">
+        <img src="photo.jpg">
+    </div>
+
+    <div class="question">
+        Will You Be My Valentine?
+    </div>
+
+    <button class="btn yes-btn" id="yesBtn" onclick="sayYes()">Yes 💘</button>
+    <button class="btn no-btn" id="noBtn">No 💔</button>
+
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        💕 Be ready at 10 PM tonight 💕<br><br>
+        It’s a date ❤️
+    </div>
+</div>
+
+<script>
+function checkPassword() {
+    const input = document.getElementById("pwd").value;
+    if (input === "3101") {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        generateBalloons();
+    } else {
+        alert("Wrong password 😜");
+    }
+}
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+let scale = 1;
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 80);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    scale += 0.1;
+    yesBtn.style.transform = `scale(${scale})`;
+}
+
+function sayYes() {
+    document.getElementById("popup").style.visibility = "visible";
+}
+
+/* REAL BALLOONS */
+function generateBalloons(){
+    for (let i = 0; i < 15; i++) {
+        const balloon = document.createElement("img");
+        balloon.src = "balloon.png";
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * window.innerWidth + "px";
+        balloon.style.animationDuration = (8 + Math.random()*6) + "s";
+        balloon.style.width = (50 + Math.random()*40) + "px";
+        document.getElementById("mainContent").appendChild(balloon);
+    }
+}
+</script>
+
+</body>
+</html>
