@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aansh ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    text-align: center;
+    color: white;
+}
+
+/* Heading */
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    margin-top: 40px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 30px #fff, 0 0 50px #ff2e63; }
+}
+
+/* Heart Image Frame */
+.heart-frame {
+    width: 320px;
+    height: 300px;
+    margin: 30px auto;
+    position: relative;
+}
+
+.heart-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: path("M 160 290 C -40 160 60 -20 160 80 C 260 -20 360 160 160 290 Z");
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* Buttons */
+.btn {
+    padding: 15px 45px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 15px;
+    transition: 0.3s ease;
+}
+
+.yes-btn {
+    background: #ff2e63;
+    color: white;
+}
+
+.no-btn {
+    background: white;
+    color: #ff2e63;
+    position: absolute;
+}
+
+/* Love Message Section */
+.message {
+    max-width: 600px;
+    margin: 30px auto;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    padding: 20px;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+.popup-content {
+    background: white;
+    color: #ff2e63;
+    padding: 60px;
+    border-radius: 25px;
+    font-size: 1.6rem;
+    animation: pop 0.5s ease forwards;
+}
+
+@keyframes pop {
+    from { transform: scale(0.4); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Floating Hearts */
+.floating-heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Aansh 💖</h1>
+
+<div class="heart-frame">
+    <img src="photo.jpeg" alt="Us">
+</div>
+
+<div class="message">
+    Aansh, every moment with you feels like magic ✨  
+    From sunsets like this to silly laughs and everything in between…  
+    I wouldn’t want to share this journey with anyone else.  
+    <br><br>
+    So I have one very important question for you… 🥺❤️
+</div>
+
+<h2>Will You Be My Valentine?</h2>
+
+<button class="btn yes-btn" id="yesBtn" onclick="sayYes()">Yes 💘</button>
+<button class="btn no-btn" id="noBtn">No 💔</button>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        💕 Aansh, be ready at 10 PM today for our date 💕<br><br>
+        It’s going to be special ❤️✨
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+let scale = 1;
+let noScale = 1;
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    scale += 0.1;
+    yesBtn.style.transform = `scale(${scale})`;
+
+    noScale -= 0.05;
+    if (noScale > 0.3) {
+        noBtn.style.transform = `scale(${noScale})`;
+    }
+});
+
+function sayYes() {
+    document.getElementById("popup").style.visibility = "visible";
+    createHearts();
+}
+
+function createHearts() {
+    for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }
+}
+</script>
+
+</body>
+</html>
